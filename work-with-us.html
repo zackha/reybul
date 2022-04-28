@@ -130,13 +130,66 @@
                 </div>
               </div>
             </div>
+            <div class="component section-page-header has-subsections-navbar-offset">
+              <div class="component-content">
+                <h1 class="field-title">Work With Us</h1>
+                <div class="section-page-header__description">
+                  <p class="field-content">We can understand that you want to work with us by sending us your e-mail address and we can get back to you via your e-mail address.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
       <!-- /#header -->
       <!-- #content -->
-      <main id="body" class="content-selected">
-        
+      <main id="body" class="content-selected" style="margin-top: 0px;">
+        <article class="component article">
+          <div class="component-content">
+            <div class="component sitecore-form column-text column-wide">
+              <div class="component-content">
+                <form id="my-form" class="subscription-page" action="https://formspree.io/f/xeqnpznw" method="POST" >
+                  <label class="subscription-sign-up-label">Email*</label>
+                  <input  type="email" name="email" class="subscription-sign-up" value="" maxlength="255" placeholder="Enter your email" data-sc-tracking="True" data-sc-field-name="Email" data-val-regex="Email* contains an invalid email address." data-val-regex-pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,17}$" data-val-required="Email* is required." data-val="true">
+                  <p id="my-form-status" style="color: #0058a3;font-weight: 600;"></p>
+                  <input id="my-form-button" value="Send" type="submit" class="btn-emphasised">
+                </form>
+                <script>
+                  var form = document.getElementById("my-form");
+                  
+                  async function handleSubmit(event) {
+                    event.preventDefault();
+                    var status = document.getElementById("my-form-status");
+                    var data = new FormData(event.target);
+                    fetch(event.target.action, {
+                      method: form.method,
+                      body: data,
+                      headers: {
+                          'Accept': 'application/json'
+                      }
+                    }).then(response => {
+                      if (response.ok) {
+                        status.innerHTML = "Thank you for joining us!";
+                        form.reset()
+                      } else {
+                        response.json().then(data => {
+                          if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                          } else {
+                            status.innerHTML = "Oops! There was a problem submitting your form"
+                          }
+                        })
+                      }
+                    }).catch(error => {
+                      status.innerHTML = "Oops! There was a problem submitting your form"
+                    });
+                  }
+                  form.addEventListener("submit", handleSubmit)
+              </script>
+              </div>
+            </div>
+          </div>
+        </article>
       </main>
       <!-- /#content -->
       <!-- #footer -->
