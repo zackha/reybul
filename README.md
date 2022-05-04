@@ -2,6 +2,8 @@
 
 The [reybul.com](https://reybul.com) domain is owned by Rey&Bul Furniture. The website code is open source on GitHub, allowing community members to develop and modify.
 
+You can convert this website to ruby or ve and we can publish it immediately
+
 ### About the Browser
 
 It is recommended to use one of the following browsers with the latest version of the systems below to browse this website:
